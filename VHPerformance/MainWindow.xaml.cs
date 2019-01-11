@@ -49,17 +49,18 @@ namespace VHPerformance
             MessageBox.Show(sw.ElapsedMilliseconds.ToString());
         }
 
-        private void BerekenKwadraat_Click(object sender, RoutedEventArgs e)
+        private async void BerekenKwadraat_Click(object sender, RoutedEventArgs e)
         {
             int getal = int.Parse(txt.Text);
-            var taak = new Task(() =>
+            var taak = new Task<int>(() =>
             {
-
-                int antwoord = Square(getal);
-                MessageBox.Show($"Het kwadraat van {getal} is {antwoord}");
+                return Square(getal);
+                
             });
 
             taak.Start();
+            await taak;
+            lbx.Items.Add($"Het kwadraat van {getal} is {taak.Result}");
         }
     }
 }
