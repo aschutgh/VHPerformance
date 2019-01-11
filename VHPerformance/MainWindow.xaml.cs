@@ -62,5 +62,19 @@ namespace VHPerformance
             await taak;
             lbx.Items.Add($"Het kwadraat van {getal} is {taak.Result}");
         }
+
+        Task<int> SquareAsync(int getal)
+        {
+            var taak = new Task<int>(() => Square(getal));
+            taak.Start();
+            return taak;
+        }
+
+        private async void BerekenKwadraatAsync_Click(object sender, RoutedEventArgs e)
+        {
+            int getal = int.Parse(txt.Text);
+            int antwoord = await SquareAsync(getal);
+            lbx.Items.Add($"Het kwadraat van {getal} is {antwoord}");
+        }
     }
 }

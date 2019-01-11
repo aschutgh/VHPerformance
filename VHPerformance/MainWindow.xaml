@@ -11,6 +11,7 @@
             <Button Height="20" Name="Kwadraat" Click="Kwadraat_Click">Kwadraat</Button>
             <TextBox Name="txt"></TextBox>
             <Button Name="BerekenKwadraat" Click="BerekenKwadraat_Click">Bereken kwadraat</Button>
+            <Button Name="BerekenKwadraatAsync" Click="BerekenKwadraatAsync_Click">Bereken kwadraat async</Button>
             <ListBox Name="lbx" Height="200"></ListBox>
         </StackPanel>
     </Grid>
