@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
 
 namespace VHPerformance
 {
@@ -23,6 +25,28 @@ namespace VHPerformance
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        int Square(int getal)
+        {
+            Thread.Sleep(1000 * getal);
+            return getal * getal;
+        }
+
+        private void Kwadraat_Click(object sender, RoutedEventArgs e)
+        {
+            var getallen = new[] { 5, 3, 2, 8, 7, 4, 3, 9 };
+
+            var sw = Stopwatch.StartNew();
+
+            var query = from g in getallen.AsParallel()
+                        where Square(g) > 10
+                        select g;
+
+            var resultaat = query.ToList();
+            sw.Stop();
+
+            MessageBox.Show(sw.ElapsedMilliseconds.ToString());
         }
     }
 }
